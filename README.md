@@ -28,29 +28,12 @@ HTTP [client error responses][5] code, specifically 401 Unauthorized inform clie
 - Access Denied
 - 401 Authorization Required
 
-Geenrally whenever there is any HTTP authentication failure 
-
-This article will focus on HTTP return code 400. However, it can be 400 or 500 HTTP return code. 
-
-401 Unauthorized
-Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response.
-
-
-success velidation return with submitted usernameError 401 vs Error 403
-When accessing or visiting a website, the WWW-authenticate header reviews the authentication method applied for granting you access to a web page. If it detects any missing valid authentication credentials, the error 401 error code will automatically display, indicating an unauthorized or expired session from your end.
-
-On the other hand, error 403, or mostly known as the “403 Forbidden” error code, is a response status code indicating a denied access from the server despite acknowledging a requested resource access from you. This type of error is somewhat the same as 401 error. However, any re-authentication credentials your provided won’t change the web page access due to the website owner’s restrictions.
-
-401 Error Code is an HTTP status code that refers to a client-side error caused by unauthorized access when visiting a password-protected website. This error can occur with any browser when a visitor fails to provide valid authentication credentials (e.g., incorrect URLs, outdated browser cache or cookies, plugin misconfiguration, etc.).
-
-As a result, a variation of 401 error messages may appear on the screen depending on the browser the visitor is using.
-
 ## How It Works:
 
-This article were focusing with below 2 solutions. htmx provides 2 htmx attributes capable to listens on error events, then perform certain action.
+This article were focusing with below 2 solutions. Both solutions provide unique way to handle HTTP resposne error to display desired message to users. htmx provides 2 htmx attributes capable to listens on error events, then perform certain action.
 
 
-### solution 1:
+### solution with hx-target-error:
 
 response-targets extension
 
@@ -58,12 +41,15 @@ This extension allows you to specify different target elements to be swapped whe
 
 It uses attribute names in a form of hx-target-[CODE] where [CODE] is a numeric HTTP response code with the optional wildcard character at its end. You can also use hx-target-error, which handles both 4xx and 5xx response codes.
 
-Install htmc extension 
+1. Install htmx extension package
 
 ```html
 <script src="https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js"></script>
 ```
 
+2. Add htmx hx-ext attribute into parent div element to enables an htmx extension and inherit to all child element.
+3. Specify desired HTTP error code to handle by using hx-target-[CODE]. [CODE] allows to customise both 4xx and 5xx response codes. for this instance, hx-target-401 will be spedified, and target element id.
+4. Specify hx-target element id to display your friendly message with successful authentication.
 
 ```python
   <div hx-ext="response-targets">
@@ -80,22 +66,11 @@ Install htmc extension
   </div>
 ```
 
-### solution 2:
+### solution with hx-responseError:
 
+Htmx provides an extensive [events][3] system that can be used to modify and enhance behavior. "htmx:responseError" event triggered when an HTTP error response occurs. For this instance, java alert used to demonstrate the action to handling error with message prompt. success velidation return with submitted username.
 
-
-"htmx:responseError"
-This event is triggered when an HTTP error response occurs
-
-handling error with prompt
-
-success velidation return with submitted username
-
-
-hx-post  
-hx-on  
-
-event htmx:responseError
+Use hx-on attributes to embed scripts inline to respond to events directly on an element enable response-error trigger an action when HTTP response error received. 
 
 ```python
     <div>
@@ -108,10 +83,17 @@ event htmx:responseError
 ```
 
 ```html
-<body hx-on::responseError="event.detail.xhr.status === 404 ?event.detail.shouldSwap = true : undefined"> 
+<body hx-on::responseError="event.detail.xhr.status === 404 ?event.detail.target = div#success-div"> 
 ```
 
 ## Final thoughts:
+
+Both solutions generally allow to achieve similar outcome. 
+By captures HTTP return client error responses from server, allows more granular use case control and error handles. 
+Personally i'll lay towards hx-target-[error] to impplement as its given much more dynamic and flexiblity in adjusting and finetune whenever   
+
+
+By taking avantage of either one solution 
 
 there is many other method to handle HTTP error
 i find with htmx more easy and 
@@ -134,7 +116,7 @@ clone
 [4]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 [5]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses
 [6]: https://serjhenrique.com/create-dependent-dropdown-with-django-and-htmx/
-
+[7]: https://htmx.org/attributes/hx-on/
 
 ---
 
@@ -146,3 +128,7 @@ HTTP provides a general framework for access control and
    authentication, via an extensible set of challenge-response
    authentication schemes, which can be used by a server to challenge a
    client request and by a client to provide authentication information.
+
+   ```html
+<body hx-on::responseError="event.detail.xhr.status === 404 ?event.detail.target = true : undefined"> 
+```
