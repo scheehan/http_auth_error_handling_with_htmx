@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+
+  <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+
+  <title>Flask Login - hx-target-error</title>
+
+</head>
+<body>
+
+  
+
+  <div hx-ext="response-targets">
+
+    <h2>htmx target swap based on return error code</h2>
+
+        <form hx-post="/login_swap" hx-target-401="#responsediv" hx-target="div#responsediv">
+            Username: <input name="Username"><br>
+            Password: <input name="password" type=password><br>
+            <button type="submit">Log In</button>
+          </form>
+
+    <div id="responsediv">
+    </div>
+
+  </div>
+
+
+</body>
+</html>
