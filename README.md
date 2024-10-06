@@ -82,24 +82,20 @@ Use hx-on attributes to embed scripts inline to respond to events directly on an
     </div>
 ```
 
+Alternative solution to specify error code
+
+
 ```html
-<body hx-on::responseError="event.detail.xhr.status === 404 ?event.detail.target = div#success-div"> 
+<hx-on:htmx:response-error="if(event.detail.xhr.status == 401)
+              { alert('Error: Incorrect Username or Password Credential') }"> 
 ```
 
 ## Final thoughts:
 
 Both solutions generally allow to achieve similar outcome. 
 By captures HTTP return client error responses from server, allows more granular use case control and error handles. 
-Personally i'll lay towards hx-target-[error] to impplement as its given much more dynamic and flexiblity in adjusting and finetune whenever   
-
-
-By taking avantage of either one solution 
-
-there is many other method to handle HTTP error
-i find with htmx more easy and 
-
-
-
+Personally i'll lay towards hx-target-[error] to impplement as its given much more dynamic and flexiblity in adjusting and finetune whenever there is new requirement arises.  
+Anyway, these are the 2 approaches able to help when need to have more granular control when comes to error handling.
 
 ## Install
 
