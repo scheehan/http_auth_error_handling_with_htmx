@@ -84,7 +84,7 @@ Use hx-on attributes to embed scripts inline to respond to events directly on an
 
 ### Alternative solution:
 
-specify error code conditionaly trigger action.
+As hx-on allow to specify javascript, its allow to specifically handles error code conditionaly trigger action closest to hx-target-[code].
 
 
 ```html
@@ -102,7 +102,7 @@ Despite response-error got alter, these are the 2 approaches able to help when n
 ## Install
 
 ```
-clone
+git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
 
 ```
 
@@ -113,7 +113,7 @@ clone
 [3]: https://htmx.org/events/#htmx:responseError
 [4]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 [5]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses
-[6]: https://serjhenrique.com/create-dependent-dropdown-with-django-and-htmx/
+[6]: https://htmx.org/docs/#modifying_swapping_behavior_with_events
 [7]: https://htmx.org/attributes/hx-on/
 
 ---
