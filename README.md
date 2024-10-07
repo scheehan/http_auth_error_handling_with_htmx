@@ -115,18 +115,3 @@ git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
 [5]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses
 [6]: https://htmx.org/docs/#modifying_swapping_behavior_with_events
 [7]: https://htmx.org/attributes/hx-on/
-
----
-
-The error handling was pretty straightforward, I just used the sendError and responseError events. It's the success handling portion that's giving me a hard time.
-
-At the moment, returning Failure from an AuthenticationHandler results in a 401 Challenge response
-
-HTTP provides a general framework for access control and
-   authentication, via an extensible set of challenge-response
-   authentication schemes, which can be used by a server to challenge a
-   client request and by a client to provide authentication information.
-
-   ```html
-<body hx-on::responseError="event.detail.xhr.status === 404 ?event.detail.target = true : undefined"> 
-```
