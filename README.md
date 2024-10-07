@@ -2,7 +2,8 @@
 
 # HTTP Authentication login failure Return Code handling usecases - Proficient Error Handling with hx-target-error and hx-responseError
 
-When comes to User experience while tries to perform login process, which provides individual identity and credential to gain access and authorisation via HTTP authentication framework. it's often poses challenge to provide helpful information to user hinting what had happened upon a login failure.
+When comes to User experience while tries to perform login authentication. while provides individual credential to gain access and authorisation via [HTTP authentication framework][4]. 
+it's often poses challenge to provide helpful information to user hinting what had happened upon a login failure.
 
 I wanted to add a form and then either show an error message if the form failed to submit, or play the "close modal" animation if the form created a new record successfully.
 
@@ -30,7 +31,8 @@ HTTP [client error responses][5] code, specifically 401 Unauthorized inform clie
 
 ## How It Works:
 
-This article were focusing with below 2 solutions. Both solutions provide unique way to handle HTTP resposne error to display desired message to users. htmx provides 2 htmx attributes capable to listens on error events, then perform certain action.
+This article meant to focus on below 2 solutions. Both solutions provide unique way to handle HTTP resposne error to display desired message to users. 
+htmx provides 2 htmx attributes capable to listens on error events, then perform certain action.
 
 
 ### solution with hx-target-error:
@@ -41,13 +43,13 @@ This extension allows you to specify different target elements to be swapped whe
 
 It uses attribute names in a form of hx-target-[CODE] where [CODE] is a numeric HTTP response code with the optional wildcard character at its end. You can also use hx-target-error, which handles both 4xx and 5xx response codes.
 
-1. Install htmx extension package
+1. Install htmx extension package via CDN 
 
 ```html
 <script src="https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js"></script>
 ```
 
-2. Add htmx hx-ext attribute into parent div element to enables an htmx extension and inherit to all child element.
+2. Add htmx [hx-ext attribute][1] into parent div element to enables an htmx extension and inherit to all child element.
 3. Specify desired HTTP error code to handle by using hx-target-[CODE]. [CODE] allows to customise both 4xx and 5xx response codes. for this instance, hx-target-401 will be spedified, and target element id.
 4. Specify hx-target element id to display your friendly message with successful authentication.
 
@@ -70,7 +72,7 @@ It uses attribute names in a form of hx-target-[CODE] where [CODE] is a numeric 
 
 Htmx provides an extensive [events][3] system that can be used to modify and enhance behavior. "htmx:responseError" event triggered when an HTTP error response occurs. For this instance, java alert used to demonstrate the action to handling error with message prompt. success velidation return with submitted username.
 
-Use hx-on attributes to embed scripts inline to respond to events directly on an element enable response-error trigger an action when HTTP response error received. 
+Use [hx-on attributes][6] to embed scripts inline to respond to events directly on an element enable response-error trigger an action when HTTP response error received. 
 
 ```python
     <div>
@@ -82,9 +84,9 @@ Use hx-on attributes to embed scripts inline to respond to events directly on an
     </div>
 ```
 
-### Alternative solution:
+### Alternate method with hx-responseError:
 
-As hx-on allow to specify javascript, its allow to specifically handles error code conditionaly trigger action closest to hx-target-[code].
+As hx-on allow to specify javascript with condition operator to specifically handles error code trigger action similar to hx-target-[code].
 
 
 ```html
@@ -103,6 +105,9 @@ Despite response-error got alter, these are the 2 approaches able to help when n
 
 ```
 git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
+cd http_auth_error_handling_with_htmx
+
+
 
 ```
 
@@ -113,5 +118,4 @@ git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
 [3]: https://htmx.org/events/#htmx:responseError
 [4]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 [5]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses
-[6]: https://htmx.org/docs/#modifying_swapping_behavior_with_events
-[7]: https://htmx.org/attributes/hx-on/
+[6]: https://htmx.org/attributes/hx-on/
