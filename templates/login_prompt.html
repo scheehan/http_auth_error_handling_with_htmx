@@ -18,9 +18,7 @@
 
           <h2>htmx response error extension based on return error code with propmt</h2>
 
-            <form hx-ext="debug" hx-post="/login_prompt" hx-on:htmx:response-error="if(event.detail.xhr.status == 404)
-              { alert('Error: Could Not Find Resource') }" 
-              hx-target="#successdiv">
+          <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#success-div">
                 Username: <input name="Username"><br>
                 Password: <input name="password" type=password><br>
                 <button type="submit">Log In</button>

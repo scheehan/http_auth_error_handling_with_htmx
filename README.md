@@ -76,7 +76,7 @@ Use [hx-on attributes][6] to embed scripts inline to respond to events directly 
 
 ```python
     <div>
-        <form hx-post="/login" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#success-div">
+        <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#success-div">
             Username: <input name="Username"><br>
             Password: <input name="password" type=password><br>
             <button type="submit">Log In</button>
@@ -90,8 +90,9 @@ As highlighted above, hx-on allow to embed scripts inline to respond to events d
 
 
 ```html
-<hx-on:htmx:response-error="if(event.detail.xhr.status == 401)
-              { alert('Error: Incorrect Username or Password Credential') }"> 
+<orm hx-post="/login_prompt" hx-on:htmx:response-error="if(event.detail.xhr.status == 401)
+              { alert('Error: Incorrect Username or Password Credential') }"
+               hx-target="#success-div"> 
 ```
 
 ## Final thoughts:
