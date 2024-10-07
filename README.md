@@ -56,7 +56,7 @@ It uses attribute names in a form of hx-target-[CODE] where [CODE] is a numeric 
 ```python
   <div hx-ext="response-targets">
 
-        <form hx-post="/login" hx-target-401="#responsediv" hx-target="div#responsediv">
+        <form hx-post="/login_swap" hx-target-401="#responsediv" hx-target="div#responsediv">
             Username: <input name="Username"><br>
             Password: <input name="password" type=password><br>
             <button type="submit">Log In</button>
@@ -68,6 +68,10 @@ It uses attribute names in a form of hx-target-[CODE] where [CODE] is a numeric 
   </div>
 ```
 
+## Result:
+
+![image](images/swap_message.png)
+
 ### solution with hx-responseError:
 
 Htmx provides an extensive [events][3] system that can be used to modify and enhance behavior. "htmx:responseError" event triggered when an HTTP error response occurs. For this instance, java alert used to demonstrate the action to handling error with message prompt. success velidation return with submitted username.
@@ -76,7 +80,7 @@ Use [hx-on attributes][6] to embed scripts inline to respond to events directly 
 
 ```python
     <div>
-        <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#success-div">
+        <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#successdiv">
             Username: <input name="Username"><br>
             Password: <input name="password" type=password><br>
             <button type="submit">Log In</button>
@@ -86,14 +90,18 @@ Use [hx-on attributes][6] to embed scripts inline to respond to events directly 
 
 ### Alternate method with hx-responseError:
 
-As highlighted above, hx-on allow to embed scripts inline to respond to events directly. which allows to implement javascript with condition operator to specifically handles error code trigger action similar to hx-target-[code].
+As highlighted above, hx-on allow to embed scripts inline to respond to events directly. which allows to implement javascript with conditional statement to specifically handles error code trigger action similar to hx-target-[code].
 
 
 ```html
-<orm hx-post="/login_prompt" hx-on:htmx:response-error="if(event.detail.xhr.status == 401)
+<form hx-post="/login_prompt" hx-on:htmx:response-error="if(event.detail.xhr.status == 401)
               { alert('Error: Incorrect Username or Password Credential') }"
                hx-target="#success-div"> 
 ```
+
+### Result:
+
+![image](images/prompt_message.png)
 
 ## Final thoughts:
 

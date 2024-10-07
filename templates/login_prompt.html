@@ -18,11 +18,11 @@
 
           <h2>htmx response error extension based on return error code with propmt</h2>
 
-          <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#success-div">
+          <form hx-post="/login_prompt" hx-on:htmx:response-error="alert('Incorrect Username or Password Credential')" hx-target="#successdiv">
                 Username: <input name="Username"><br>
                 Password: <input name="password" type=password><br>
                 <button type="submit">Log In</button>
-              </form>
+          </form>
         </div>
 
     <div id="successdiv">
