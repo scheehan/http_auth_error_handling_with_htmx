@@ -86,7 +86,7 @@ Use [hx-on attributes][6] to embed scripts inline to respond to events directly 
 
 ### Alternate method with hx-responseError:
 
-As hx-on allow to specify javascript with condition operator to specifically handles error code trigger action similar to hx-target-[code].
+As highlighted above, hx-on allow to embed scripts inline to respond to events directly. which allows to implement javascript with condition operator to specifically handles error code trigger action similar to hx-target-[code].
 
 
 ```html
@@ -98,8 +98,7 @@ As hx-on allow to specify javascript with condition operator to specifically han
 
 Both solutions generally allow to achieve similar outcome. 
 By captures HTTP return client error responses from server, allows more granular use case control and error handles. 
-Personally i'll lay towards hx-target-[error] to impplement as its given much more dynamic and flexiblity in adjusting and finetune whenever there is new requirement arises.  
-Despite response-error got alter, these are the 2 approaches able to help when need to have more granular control when comes to error handling.
+hx-target-[error] to impplementation given much more easy and direct in adjusting and finetune whenever there is new requirement arises when comes to return HTTP code. on the other hand, if your requirement needs more customisation on codition and action based on specidic use cases,  response-error would be preferable. All in all, these are the 2 approaches able to help when need to have more granular control when comes to error handling.
 
 ## Install
 
@@ -107,8 +106,9 @@ Despite response-error got alter, these are the 2 approaches able to help when n
 git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
 cd http_auth_error_handling_with_htmx
 
+pip install -r requirements.txt
 
-
+flask run --debug
 ```
 
 
