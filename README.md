@@ -5,8 +5,6 @@
 When comes to User experience while tries to perform login authentication. while provides individual credential to gain access and authorisation via [HTTP authentication framework][4]. 
 it's often poses challenge to provide helpful information to user hinting what had happened upon a login failure.
 
-I wanted to add a form and then either show an error message if the form failed to submit, or play the "close modal" animation if the form created a new record successfully.
-
 This round of article meant to demontrate 2 approaches to proficiently handle HTTP [client error responses][5] code, whenever submitted credential via form submission doesn't matched with users database.
 
 ## htmx 
