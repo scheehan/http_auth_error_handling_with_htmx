@@ -109,12 +109,16 @@ hx-target-[error] to impplementation given much more easy and direct in adjustin
 
 ## Install & run web app
 
-```
+```html
 git clone https://github.com/scheehan/http_auth_error_handling_with_htmx.git
+```
+```python
 cd http_auth_error_handling_with_htmx
 
 pip install -r requirements.txt
+```
 
+```python
 flask run --debug
 ```
 
